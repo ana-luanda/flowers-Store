@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 	<title> Flores da Ana </title>
+	<meta charset="utf-8">
+	<style type="text/css">
+
+	@keyframes slide{
+
+		0%{
+            background-image: url(imagens/banner1.jpg);
+		}
+		50%{
+			background-image: url(imagens/banner2.jpg);
+		}
+		100%{
+			background-image: url(imagens/banner3.jpg);
+		}
+	}
+
+	ul{
+		
+	}
+	
+	.allpage{
+			margin: 0 9%;
+			width: 80%;
+			height: 100%;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7);
+			
+		}
+
+	.nav{
+
+		background-color: rgb(51, 51, 51);
+		overflow: auto;
+		white-space: nowrap;
+	}
+
+	.banner{
+		animation: slide 11s ease-in-out 0s infinite;
+		width: 100%;
+		height: 271px;
+		
+		
+		
+
+	}
+	li{
+		display: inline-block;
+		margin: 0 90px;
+	}
+
+	body{
+
+	}
+
+	table{
+			text-align: center;
+	}
+
+	td{
+		padding: 0 10px;
+	}
+
+	</style>
+	<script type="text/javascript">
+		function vervalor(){
+			var formulario = document.getElementById("formulario");
+			var qtdRosas = parseInt(document.formulario.qtdRosas.value);
+			var qtdCamelia = parseInt(document.formulario.qtdCamelia.value);
+			var qtdGerbera   = parseInt(document.formulario.qtdGerbera.value);
+			var table     = document.getElementById("tabela");
+
+			document.getElementById('sub1').innerHTML ="Preço Total:"
+			document.getElementById('sub2').innerHTML ="Preço Total:"
+			document.getElementById('sub3').innerHTML ="Preço Total:"
+			
+
+
+			for(var i = 0 ; i<4 ; i++){
+				table.deleteRow(-1);
+			}
+			if( qtdRosas != 0 || qtdCamelia != 0 || qtdGerbera != 0){
+
+				createTable("Nome","Valor Unitario","Quantidade","subtotal");
+
+			}
+			
+
+
+			if(qtdRosas != 0){
+				createTable("Rosas","650",qtdRosas,650*qtdRosas);
+				document.getElementById('sub1').innerHTML = "Preço Total: "+(650*qtdRosas)+" MT";
+			}
+
+			if(qtdCamelia != 0){
+				createTable("Camélia","800",qtdCamelia,800*qtdCamelia);
+				document.getElementById('sub2').innerHTML = "Preço Total: "+(800*qtdCamelia)+" MT";
+			}
+
+			if(qtdGerbera != 0){
+				createTable("Gérbera","950",qtdGerbera,950*qtdGerbera);
+				document.getElementById('sub3').innerHTML = "Preço Total: "+(950*qtdGerbera)+" MT";
+
+			}
+
+
+			document.formulario.valorTotal.value = 650*qtdRosas+800*qtdCamelia+950*qtdGerbera;
+			document.formulario.valorTotal2.value =650*qtdRosas+800*qtdCamelia+950*qtdGerbera;
+
+		}
+		
+		function validar(){
+			if(document.formulario.valorTotal.value == 0 ){
+				alert("Caro Cliente, Selecione a quantidade de Flores Que deseja Comprar");
+				return false;
+			}
+			alert("Compra efectuada com sucesso! Gratos pelaa preferência");
+			alert("");
+			return true;
+		}
+
+		function createTable(desc,valor,quant,subtotal){
+			var table = document.getElementById("tabela");
+
+			var linhas = table.insertRow(-1);
+			var descr  = linhas.insertCell(0);
+			var unit   = linhas.insertCell(1);
+			var qt     = linhas.insertCell(2);
+			var sub    = linhas.insertCell(3);
+
+			descr.appendChild(document.createTextNode(desc));
+			unit.appendChild(document.createTextNode(valor));
+			qt.appendChild(document.createTextNode(quant));
+			sub.appendChild(document.createTextNode(subtotal));
+
+
+
+		};
+
+	</script>
+</head>
+<body>
+	<div class = "allpage">
+		<div class="nav">
+		</div>
+		<div class="banner">
+		</div>
+		<center>
+			<div class ="interface">
+				
+				<form name = "formulario" action="http://asi.isutc.ac.mz:8080/asi/show_parameters.jsp" method="post" onsubmit="return validar()" >
+					<div>
+						<ul>
+							<li>
+								<img src="imagens/Rosas1.jpg" alt="Rosas" height="350">
+								<img src="imagens/Rosas2.jpg" alt="Rosas2	" height="350">
+								<p> 
+										Nome: Rosas<br>
+										Preço: 650 MT
+								</p>
+
+
+								
+								<p>
+									Quantidade:
+									<select onclick ="vervalor()" id="qtdRosas" name="quant. Rosas">
+										<option value="0" >0</option>
+										<option value="1" >1</option>
+										<option value="2" >2</option>
+										<option value="3" >3</option>
+										<option value="4" >4</option>
+										<option value="5" >5</option>
+										<option value="6" >6</option>
+										<option value="7" >7</option>
+										<option value="8" >8</option>
+										<option value="9" >9</option>
+										<option value="10" >10</option>
+									</select><br>
+
+								<label id = "sub1">Preço Total:<label>
+
+							 </li>
+							<li>
+
+								<img src="imagens/Camelia1.jpg" alt="Camélia" height="350">
+								<img src="imagens/Camelia2.jpg" alt="Camélia2" height="350">
+								<p> 
+										Nome: Camélia<br>
+										Preço: 800 MT
+								</p>
+								<p>
+									Quantidade:
+									<select onclick="vervalor()" id="qtdCamelia" name="quant.Camelia">
+										<option value="0" >0</option>
+										<option value="1" >1</option>
+										<option value="2" >2</option>
+										<option value="3" >3</option>
+										<option value="4" >4</option>
+										<option value="5" >5</option>
+										<option value="6" >6</option>
+										<option value="7" >7</option>
+										<option value="8" >8</option>
+										<option value="9" >9</option>
+										<option value="10" >10</option>
+									</select><br>
+									<label id = "sub2">Preço Total:<label>
+									
+								</p>
+
+							</li>
+							<li>
+								
+								<img src="imagens/Gerbera1.jpg" alt="Gérbera" height="350">
+								<img src="imagens/Gerbera2.jpg" alt="Gérbera2" height="350">
+								<p> 
+										Nome: Gérbera<br>
+										Preço: 950 MT
+								</p>
+								<p>
+									Quantidade:
+									<select onclick ="vervalor()" id="qtdGerbera" name="quant.Gerbera">
+										<option value="0" >0</option>
+										<option value="1" >1</option>
+										<option value="2" >2</option>
+										<option value="3" >3</option>
+										<option value="4" >4</option>
+										<option value="5" >5</option>
+										<option value="6" >6</option>
+										<option value="7" >7</option>
+										<option value="8" >8</option>
+										<option value="9" >9</option>
+										<option value="10" >10</option>
+									</select><br>
+									<label id = "sub3">Preço Total:<label>
+									
+
+								</p>
+
+							</li>
+						</ul>				
+					</div>
+
+						<table border="1" id="tabela"></table>
+
+						<p>Valor Total:<input type="text" id="valorTotal" disabled value="0">
+						<input type="hidden" name="valor Total" id="valorTotal2" value="0"></p>
+						<p></p>
+						<input type="submit"  value="Comprar Itens">
+						<p></p><br><p></p>				
+					</div>
+				</form>
+
+			</div>
+
+		</center>
+	</div>
+</body>
+</html>
